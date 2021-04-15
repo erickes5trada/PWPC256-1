@@ -7,7 +7,8 @@ router.get('/', function(req, res, next) {
     title: 'Express', 
     author: 'Erick Estrada',
     appName: 'WebApp',
-    lista: ['Facebook','Twitter','Instagram']
+    lista: ['Facebook','Twitter','Instagram'],
+    company: 'Awesome software'
    });
 });
 
