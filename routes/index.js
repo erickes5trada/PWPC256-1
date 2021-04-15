@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 
 /*Agregando nueva ruta*/
 router.get('/greeting',(req,res,next) => {
-  res.status(200).json({message:'Holuuu'});
+  res.status(200).json({message:'Mensaje JSON para la ruta /greeting'});
 });
 
 module.exports = router;
