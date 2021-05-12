@@ -17,5 +17,42 @@ module.exports ={
     contentBase: path.join(__dirname,'public'),
     port: 8090,
     host: 'localhost'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    'modules': false,
+                    'useBuildInst': 'usage',
+                    'target': {"chrome":"80"},
+                    'corejs': 3
+                  }
+                ]
+              ],
+              plugins: [
+                [
+                  "module-resolver", 
+                  {
+                    "root" : ["./"],
+                    "alias": {
+                      "@client" : "./client"
+                    }
+                  } 
+                ]
+              ]
+            }
+          }
+        ]
+      }
+    ]
   }
 }

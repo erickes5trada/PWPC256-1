@@ -1,12 +1,53 @@
-module.exports = {
-  // 1. especificando el archivo de entrada
+const path = require('path');
+module.exports ={
+  // 0. establecemos el modo del configurador
+  mode: 'development',
+  // 1. especificamos el archivo de entrada
   entry: './client/index.js',
-  // 2. especificando el archivo de salida
+  // 2. especificamos la salida
   output: {
-    path: '/public',// 3. ruta absoluta de la salida
-    filename: 'bundle.js' // 4. nombre del archivo de salida
+    // 3. ruta absoluta de salida
+    path: path.join(__dirname,'public'),
+    // 4. nombre del archivo de salida
+    filename: 'js/bundle.js',
+    // 5. ruta del path publico para fines del servidor de desarrollo
+    publicPath: '/',
   },
-  devServer: {
-    contentBase: './public'
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    'modules': false,
+                    'useBuildInst': 'usage',
+                    'target': {"chrome":"80"},
+                    'corejs': 3
+                  }
+                ]
+              ],
+              plugins: [
+                [
+                  "module-resolver", 
+                  {
+                    "root" : ["./"],
+                    "alias": {
+                      "@client" : "./client"
+                    }
+                  } 
+                ]
+              ]
+            }
+          }
+        ]
+      }
+    ]
   }
 }
