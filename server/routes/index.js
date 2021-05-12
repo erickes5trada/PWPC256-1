@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', { 
     title: 'Express', 
-    author: 'Erick Estrada',
+    author: 'Erick Estrada Senado',
     appName: 'WebApp',
     lista: ['Facebook','Twitter','Instagram'],
     company: 'Awesome software'
