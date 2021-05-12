@@ -27,13 +27,13 @@ module.exports ={
                   '@babel/preset-env',
                   {
                     'modules': false,
-                    'useBuildInst': 'usage',
-                    'target': {"chrome":"80"},
+                    'useBuiltIns': 'usage',
+                    'targets': {"chrome":"80"},
                     'corejs': 3
                   }
                 ]
               ],
-              plugins: [
+              "plugins": [
                 [
                   "module-resolver", 
                   {
