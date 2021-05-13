@@ -1,4 +1,5 @@
 import './stylesheets/style.css'
+import './stylesheets/myStyles.css'
 
 console.log("Webpack funcionando!!");
 
