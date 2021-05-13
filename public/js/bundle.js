@@ -1,1 +1,1 @@
-console.log("Webpack funcionando!!"),((o="hola")=>{alert(o)})(),async function(){console.log("Calling an async funcion");const o=await new Promise((o=>{setTimeout((()=>{o("resolve")}),2e3)}));console.log(o)}();
+(()=>{"use strict";console.log("Webpack funcionando!!"),((o="hola")=>{alert(o)})(),async function(){console.log("Calling an async funcion");const o=await new Promise((o=>{setTimeout((()=>{o("resolve")}),2e3)}));console.log(o)}()})();
