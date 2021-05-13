@@ -1,3 +1,5 @@
+import './stylesheets/style.css'
+
 console.log("Webpack funcionando!!");
 
 let show = (m = "hola") => {
