@@ -22,11 +22,11 @@ var app = express();
 
 // verificando el modo de ejecución de la aplicación
 if(env === 'development'){
-  console.log('executing in development mode: Webpack hot reloading');
+  console.log('>>>>Executing in development mode: Webpack hot reloading');
   // Paso 1: agregando la ruta del hot module reloading
   // reload=true: habilita la recarga del frontend cuando hay cambios en el código
   // timeout: tiempo de recarga y espera  
-  webpackConfig.entry = ['wbepack-hot-middleware/client?reload=true&timeout=1000',
+  webpackConfig.entry = ['webpack-hot-middleware/client?reload=true&timeout=1000',
   webpackConfig.entry];
 
   // Paso 2: agregando el plugin
@@ -43,6 +43,8 @@ if(env === 'development'){
 
   // Paso 5: agregando webpack hot middleware
   app.use(webpackHotMiddleware(compiler));
+}else{
+  console.log('executing in production mode...');
 }
 
 
