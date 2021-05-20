@@ -7,7 +7,19 @@ import logger from 'morgan';
 import indexRouter from '@s-routes/index';
 import usersRouter from '@s-routes/users';
 
+// webpack modules
+import webpack from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackConfig from '../webpack.dev.config';
+
+// Consultamos el modo en el que se esta ejecutando el programa
+const env = process.env.NODE_ENV || 'development';
+
+// Se crea la aplicación de express
 var app = express();
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
