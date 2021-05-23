@@ -11,7 +11,7 @@ import usersRouter from '@s-routes/users';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackConfig from '../webpack.dev.config';
+import webpackConfig from '../webpack.config';
 import webpackDevConfig from '../webpack.dev.config';
 
 // Consultamos el modo en el que se esta ejecutando el programa
