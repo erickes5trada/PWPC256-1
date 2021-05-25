@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import createError from 'http-errors';
 import express from 'express';
 import path from 'path';
@@ -11,42 +12,43 @@ import usersRouter from '@s-routes/users';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackConfig from '../webpack.config';
 import webpackDevConfig from '../webpack.dev.config';
 
 // Consultamos el modo en el que se esta ejecutando el programa
 const env = process.env.NODE_ENV || 'development';
 
 // Se crea la aplicación de express
-var app = express();
+const app = express();
 
 // verificando el modo de ejecución de la aplicación
-if(env === 'development'){
+if (env === 'development') {
   console.log('>>>>Executing in development mode: Webpack hot reloading');
   // Paso 1: agregando la ruta del hot module reloading
   // reload=true: habilita la recarga del frontend cuando hay cambios en el código
-  // timeout: tiempo de recarga y espera  
-  webpackConfig.entry = ['webpack-hot-middleware/client?reload=true&timeout=1000',
-  webpackConfig.entry];
+  // timeout: tiempo de recarga y espera
+  webpackDevConfig.entry = [
+    'webpack-hot-middleware/client?reload=true&timeout=1000',
+    webpackDevConfig.entry,
+  ];
 
   // Paso 2: agregando el plugin
-  webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin);
+  webpackDevConfig.plugins.push(new webpack.HotModuleReplacementPlugin);
 
   // Paso 3: creando compilador de webpack
-  const compiler = webpack(webpackConfig);
+  const compiler = webpack(webpackDevConfig);
 
   // Paso 4: Agregando el middleware a la cadena de middlewares de la aplicación
-  app.use(webpackDevMiddleware(compiler,
-    {
-      publicPath: webpackDevConfig.output.publicPath
-    }));
+  app.use(
+    webpackDevMiddleware(compiler, {
+      publicPath: webpackDevConfig.output.publicPath,
+    }),
+  );
 
   // Paso 5: agregando webpack hot middleware
   app.use(webpackHotMiddleware(compiler));
-}else{
+} else {
   console.log('executing in production mode...');
 }
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -62,12 +64,12 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
