@@ -69,6 +69,10 @@ app.use('/users', usersRouter);
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
+  // Log con Winston
+  winston.error(
+    `Error 404, Page not found, URL: ${req.originalUrl}, Method: ${req.method}`,
+  );
 });
 
 // error handler
@@ -76,6 +80,13 @@ app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // Loggeando con Winston
+  winston.error(
+    `status: ${err.status || 500} Message: ${err.message} Method: ${
+      req.method
+    } IP: ${req.ip}`,
+  );
 
   // render the error page
   res.status(err.status || 500);
