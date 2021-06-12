@@ -6,8 +6,8 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import winston from '@server/config/winston';
 
-import indexRouter from '@s-routes/index';
-import usersRouter from '@s-routes/users';
+// importando el router principal
+import router from '@server/routes/index';
 
 // Importing configurations
 import configTemplateEngine from '@s-config/template-engine';
@@ -36,7 +36,7 @@ if (env === 'development') {
   ];
 
   // Paso 2: agregando el plugin
-  webpackDevConfig.plugins.push(new webpack.HotModuleReplacementPlugin);
+  webpackDevConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
 
   // Paso 3: creando compilador de webpack
   const compiler = webpack(webpackDevConfig);
@@ -63,8 +63,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// Instalando el enrutador principal
+// a la aplicacion express
+router.addRoutes(app);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

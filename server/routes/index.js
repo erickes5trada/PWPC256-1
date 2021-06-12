@@ -1,10 +1,17 @@
-import { Router } from 'express';
-// importando el router de Home
-import home from './home';
-
-const router = new Router();
+// importando el controlador
+import homeRouter from './home';
+// importando el router del user
+import userRouter from './user';
 
 /* GET home page. */
-router.use('/', home);
+// router.use('/', homeRouter);
+// router.use('/user', userRouter);
 
-module.exports = router;
+const addRoutes = (app) => {
+  app.use('/', homeRouter);
+  app.use('/user', userRouter);
+};
+
+export default {
+  addRoutes,
+};
