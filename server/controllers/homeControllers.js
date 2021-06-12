@@ -1,6 +1,6 @@
 const index = (req, res) => {
   res.render('index', {
-    title: 'Express',
+    title: 'ProjNotes',
     // lista: ['Facebook', 'Twitter', 'Instagram'],
   });
 };
