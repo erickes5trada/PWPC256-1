@@ -5,6 +5,11 @@ const index = (req, res) => {
   });
 };
 
+const greeting = (req, res) => {
+  res.status(200).json({ message: 'Mensaje JSON para la ruta /greeting' });
+};
+
 export default {
   index,
+  greeting,
 };
