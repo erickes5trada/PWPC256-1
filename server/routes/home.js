@@ -8,7 +8,7 @@ import homeController from '@server/controllers/homeControllers';
 const router = new Router();
 
 // GET '/'
-router.get('/', homeController.index);
+router.get(['/', '/index'], homeController.index);
 
 // GET '/greeting'
 router.get('/greeting', homeController.greeting);
