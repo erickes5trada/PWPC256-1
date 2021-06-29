@@ -5,12 +5,6 @@ import './stylesheets/myStyles.css';
 
 console.log('Webpack funcionando!!');
 
-const show = (m = 'hola') => {
-  alert(m);
-};
-
-show();
-
 function resolveAfter2Seconds() {
   return new Promise((resolve) => {
     setTimeout(() => {
